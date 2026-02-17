@@ -2,7 +2,7 @@
 
 ## ✅ **ALL FEATURES IMPLEMENTED**
 
-Your Snapchat clone now has **180+ features** - everything you asked for and more!
+Your Zenith now has **180+ features** - everything you asked for and more!
 
 ---
 
@@ -194,7 +194,7 @@ Your Snapchat clone now has **180+ features** - everything you asked for and mor
 ## 📁 **Project Structure**
 
 ```
-snapchat-clone/
+zenith/
 ├── src/
 │   ├── components/
 │   │   ├── CameraView.jsx ✅ Enhanced with AR
@@ -290,7 +290,7 @@ http://localhost:5173
 
 ## 🏆 **Achievement Unlocked!**
 
-**🎊 You now have the MOST ADVANCED Snapchat clone ever built! 🎊**
+**🎊 You now have the MOST ADVANCED Zenith ever built! 🎊**
 
 ### What You Can Do Now:
 1. ✅ Take photos with AR filters
@@ -335,7 +335,7 @@ If you need help:
 
 ## 🎊 **CONGRATULATIONS!**
 
-You've successfully built a **next-generation Snapchat clone** with:
+You've successfully built a **next-generation Zenith** with:
 - ✅ All requested features
 - ✅ Real GPS location
 - ✅ AR filters

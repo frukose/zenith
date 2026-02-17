@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { User, MessageCircle, Send, Image, Mic, Smile, MoreVertical, Phone, Video, Info } from 'lucide-react';
 
 const initialChats = [
-    { id: 1, name: 'Team Snapchat', message: 'New filters available! 🔥', time: '2m', status: 'new', avatar: '👻' },
+    { id: 1, name: 'Team Zenith', message: 'New filters available! 🔥', time: '2m', status: 'new', avatar: '👻' },
     { id: 2, name: 'Bestie', message: 'Opened', time: '5m', status: 'opened', avatar: '😎' },
     { id: 3, name: 'John Doe', message: 'Received', time: '1h', status: 'received', avatar: '🎮' },
-    { id: 4, name: 'Alice', message: 'Tap to view', time: '2h', status: 'new_snap', avatar: '🌸' },
+    { id: 4, name: 'Alice', message: 'Tap to view', time: '2h', status: 'new_zenith', avatar: '🌸' },
     { id: 5, name: 'Mike', message: 'Typing...', time: '3h', status: 'typing', avatar: '⚡' },
     { id: 6, name: 'Sarah', message: 'Streaks 🔥', time: '5h', status: 'streak', avatar: '🎨' },
 ];
@@ -41,7 +41,7 @@ export default function ChatView() {
             setTimeout(() => {
                 const response = {
                     id: Date.now() + 1,
-                    text: ['Hey!', 'What\'s up?', 'Cool!', 'Nice snap!', 'Let\'s hang out!'][Math.floor(Math.random() * 5)],
+                    text: ['Hey!', 'What\'s up?', 'Cool!', 'Nice zenith!', 'Let\'s hang out!'][Math.floor(Math.random() * 5)],
                     sender: 'them',
                     time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                     read: false
@@ -209,7 +209,7 @@ export default function ChatView() {
                                 fontWeight: chat.status === 'new' ? 'bold' : 'normal'
                             }}>
                                 {chat.status === 'new' && '■ '}
-                                {chat.status === 'new_snap' && '📸 '}
+                                {chat.status === 'new_zenith' && '📸 '}
                                 {chat.status === 'streak' && '🔥 '}
                                 {chat.message}
                             </span>

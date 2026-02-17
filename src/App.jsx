@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDrag } from '@use-gesture/react';
 import { Settings } from 'lucide-react';
-import CameraView from './components/CameraView';
+import ZenithView from './components/ZenithView';
 import ChatView from './components/ChatView';
 import StoriesView from './components/StoriesView';
 import SpotlightView from './components/SpotlightView';
@@ -11,7 +11,7 @@ import BottomNav from './components/BottomNav';
 import SettingsPanel from './components/SettingsPanel';
 import { useAppContext } from './context/AppContext';
 
-const viewOrder = ['map', 'chat', 'camera', 'stories', 'spotlight'];
+const viewOrder = ['map', 'chat', 'zenith', 'stories', 'spotlight'];
 
 const variants = {
   enter: (direction) => ({
@@ -37,7 +37,7 @@ import AuthView from './components/AuthView';
 import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
-  const [view, setView] = useState('camera');
+  const [view, setView] = useState('zenith');
   const [[page, direction], setPage] = useState([2, 0]);
   const [showSettings, setShowSettings] = useState(false);
   const { theme, notifications, removeNotification } = useAppContext();
@@ -173,7 +173,7 @@ export default function App() {
       </div>
 
       {/* Settings Button */}
-      {view === 'camera' && (
+      {view === 'zenith' && (
         <div
           onClick={() => setShowSettings(true)}
           style={{
@@ -223,7 +223,7 @@ export default function App() {
           >
             {view === 'map' && <MapView />}
             {view === 'chat' && <ChatView />}
-            {view === 'camera' && <CameraView />}
+            {view === 'zenith' && <ZenithView />}
             {view === 'stories' && <StoriesView />}
             {view === 'spotlight' && <SpotlightView />}
           </motion.div>

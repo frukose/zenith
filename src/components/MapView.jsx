@@ -255,7 +255,7 @@ export default function MapView() {
                                         fontSize: 11,
                                         cursor: 'pointer'
                                     }}>
-                                        Snap
+                                        Zenith
                                     </button>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-Welcome to the most advanced Snapchat clone ever built! Here's how to use all the amazing features.
+Welcome to the most advanced Zenith ever built! Here's how to use all the amazing features.
 
 ## 📱 **First Time Setup**
 
@@ -267,6 +267,6 @@ Settings → Profile → Memories → **View**
 
 ## 🚀 **You're Ready!**
 
-You now have access to **180+ features**! Explore, create, and enjoy the most advanced Snapchat clone ever built.
+You now have access to **180+ features**! Explore, create, and enjoy the most advanced Zenith ever built.
 
 **Have fun! 🎉**

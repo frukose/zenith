@@ -4,8 +4,8 @@ import { Trophy, Star, Zap, Heart, Camera, MessageCircle, Award, Target, Trendin
 const achievements = [
     {
         id: 'first_snap',
-        title: 'First Snap',
-        description: 'Take your first snap',
+        title: 'First Zenith',
+        description: 'Take your first zenith',
         icon: Camera,
         color: '#FFFC00',
         unlocked: true,
@@ -13,8 +13,8 @@ const achievements = [
     },
     {
         id: 'snap_master',
-        title: 'Snap Master',
-        description: 'Take 100 snaps',
+        title: 'Zenith Master',
+        description: 'Take 100 zeniths',
         icon: Star,
         color: '#3CB2E2',
         unlocked: false,

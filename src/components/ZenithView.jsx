@@ -4,7 +4,7 @@ import * as blazeface from '@tensorflow-models/blazeface';
 import { Camera, RefreshCw, Zap, Image as ImageIcon, Search, User, Music, Plus, X, Download, Send, Smile, Video, Sparkles, Grid3x3, Timer } from 'lucide-react';
 import { arFilters, applyARFilter } from '../utils/arFilters';
 import { useAppContext } from '../context/AppContext';
-import './CameraView.css';
+import './ZenithView.css';
 
 
 
@@ -22,7 +22,7 @@ const colorFilters = [
   { id: 'ghost', name: 'Ghost', filter: 'invert(1) hue-rotate(180deg) brightness(1.2)', color: '#e0ffff' },
 ];
 
-export default function CameraView() {
+export default function ZenithView() {
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -67,7 +67,7 @@ export default function CameraView() {
   }, []);
 
   useEffect(() => {
-    console.log('CameraView: Mounting...');
+    console.log('ZenithView: Mounting...');
     async function setupCamera() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -303,7 +303,7 @@ export default function CameraView() {
       const imageData = canvas.toDataURL('image/png');
       setCapturedImage(imageData);
       addMemory({ type: 'photo', filter: activeFilterId, arFilter: activeARFilter });
-      addNotification({ type: 'success', message: '📸 Snap captured!' });
+      addNotification({ type: 'success', message: '📸 Zenith captured!' });
     }
   };
 
@@ -418,7 +418,7 @@ export default function CameraView() {
         <div className="camera-controls">
           <div className="secondary-action" onClick={() => {
             const link = document.createElement('a');
-            link.download = capturedImage ? `snap_${activeFilterId}.png` : 'snap_video.webm';
+            link.download = capturedImage ? `zenith_${activeFilterId}.png` : 'zenith_video.webm';
             link.href = capturedImage || capturedVideo;
             link.click();
           }}>

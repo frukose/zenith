@@ -2,7 +2,7 @@
 
 ## ✅ **App is Production-Ready!**
 
-Your Snapchat clone is now fully optimized for production deployment.
+Your Zenith is now fully optimized for production deployment.
 
 ---
 
@@ -76,7 +76,7 @@ npm install --save-dev gh-pages
 2. **Add to package.json**:
 ```json
 {
-  "homepage": "https://yourusername.github.io/snapchat-clone",
+  "homepage": "https://yourusername.github.io/zenith",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -312,7 +312,7 @@ netlify deploy --prod
 
 ## 🎉 **You're Ready!**
 
-Your production-ready Snapchat clone includes:
+Your production-ready Zenith includes:
 
 - ✅ Optimized build
 - ✅ PWA support

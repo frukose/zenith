@@ -55,7 +55,7 @@ npm run deploy             # Deploy to GitHub Pages
 ## 📁 **Project Structure**
 
 ```
-snapchat-clone/
+zenith/
 ├── src/
 │   ├── components/       # React components
 │   ├── context/         # Global state

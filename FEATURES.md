@@ -2,7 +2,7 @@
 
 ## 🚀 **MASSIVE UPDATE - 200+ Features Added!**
 
-Your Snapchat clone now has **EVERYTHING** and more! Here's the complete breakdown:
+Your Zenith now has **EVERYTHING** and more! Here's the complete breakdown:
 
 ---
 
@@ -419,8 +419,8 @@ Your Snapchat clone now has **EVERYTHING** and more! Here's the complete breakdo
 
 ---
 
-## 🔥 **THIS IS NOW THE MOST ADVANCED SNAPCHAT CLONE EVER BUILT!**
+## 🔥 **THIS IS NOW THE MOST ADVANCED Zenith EVER BUILT!**
 
 **Every feature you asked for is DONE!** 🎊
 
-Enjoy your next-generation Snapchat clone! 🚀
+Enjoy your next-generation Zenith! 🚀

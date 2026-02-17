@@ -14,7 +14,7 @@ export default function SettingsPanel({ onClose }) {
         hapticsEnabled,
         setHapticsEnabled,
         user,
-        savedSnaps,
+        savedZeniths,
         memories
     } = useAppContext();
 
@@ -275,7 +275,7 @@ export default function SettingsPanel({ onClose }) {
                             <SettingItem
                                 icon={Download}
                                 title="Saved Snaps"
-                                description={`${savedSnaps.length} snaps saved`}
+                                description={`${savedZeniths.length} zeniths saved`}
                             />
                             <SettingItem
                                 icon={Image}
@@ -324,8 +324,8 @@ export default function SettingsPanel({ onClose }) {
                         <div>
                             <StatCard
                                 icon={Award}
-                                title="Snap Score"
-                                value={user.snapScore.toLocaleString()}
+                                title="Zenith Score"
+                                value={user.zenithScore.toLocaleString()}
                                 color="#FFFC00"
                             />
                             <StatCard

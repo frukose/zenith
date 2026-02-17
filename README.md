@@ -1,6 +1,6 @@
-# 🚀 Snapchat Clone - Next Generation
+# 🚀 Zenith - Next Generation
 
-A feature-rich, modern web-based Snapchat clone built with React, featuring **180+ features** including AR filters, real GPS location, achievements, and more!
+A feature-rich, modern web-based Zenith built with React, featuring **180+ features** including AR filters, real GPS location, achievements, and more!
 
 ![Production Ready](https://img.shields.io/badge/Production-Ready-brightgreen)
 ![Features](https://img.shields.io/badge/Features-180+-blue)
@@ -143,7 +143,7 @@ netlify deploy --prod
 ```bash
 # Clone the repository
 git clone <your-repo-url>
-cd snapchat-clone
+cd zenith
 
 # Install dependencies
 npm install

@@ -1,7 +1,7 @@
 {
-    "name": "Snapchat Clone",
-    "short_name": "Snap Clone",
-    "description": "Next-generation Snapchat clone with 180+ features",
+    "name": "Zenith",
+    "short_name": "Zenith",
+    "description": "Next-generation social app with 180+ features",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#000000",

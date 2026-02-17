@@ -1,5 +1,5 @@
 // Simple service worker for offline support
-const CACHE_NAME = 'snapchat-clone-v1';
+const CACHE_NAME = 'zenith-v1';
 const urlsToCache = [
     '/',
     '/index.html',

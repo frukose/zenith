@@ -12,13 +12,13 @@ export const AppProvider = ({ children }) => {
         id: 1,
         name: 'You',
         avatar: '😊',
-        snapScore: 12450,
+        zenithScore: 12450,
         streaks: 15,
         bestFriends: [],
         achievements: []
     });
     const [notifications, setNotifications] = useState([]);
-    const [savedSnaps, setSavedSnaps] = useState([]);
+    const [savedZeniths, setSavedZeniths] = useState([]);
     const [memories, setMemories] = useState([]);
 
     // Play sound effect
@@ -75,10 +75,10 @@ export const AppProvider = ({ children }) => {
         }, 4000);
     };
 
-    // Save snap
-    const saveSnap = (snap) => {
-        setSavedSnaps(prev => [{ id: Date.now(), ...snap }, ...prev]);
-        addNotification({ type: 'success', message: 'Snap saved!' });
+    // Save zenith
+    const saveZenith = (zenith) => {
+        setSavedZeniths(prev => [{ id: Date.now(), ...zenith }, ...prev]);
+        addNotification({ type: 'success', message: 'Zenith saved!' });
     };
 
     // Add memory
@@ -104,8 +104,8 @@ export const AppProvider = ({ children }) => {
         notifications,
         addNotification,
         removeNotification,
-        savedSnaps,
-        saveSnap,
+        savedZeniths,
+        saveZenith,
         memories,
         addMemory,
         playSound,
