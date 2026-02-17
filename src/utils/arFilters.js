@@ -547,3 +547,285 @@ arFilters.push({
         });
     }
 });
+
+// === HEAD SOCCER GAME ===
+let soccerState = {
+    ball: { x: 0, y: -100, vx: 0, vy: 0, r: 40 },
+    score: 0,
+    highScore: 0,
+    isPlaying: false,
+    particles: [],
+    lastFrame: 0,
+    combo: 0
+};
+
+arFilters.push({
+    id: 'game-soccer',
+    name: '⚽ Soccer',
+    type: 'game',
+    description: 'Keep the ball in the air with your head!',
+    overlay: (ctx, face) => {
+        const width = ctx.canvas.width;
+        const height = ctx.canvas.height;
+        const now = Date.now();
+
+        if (!soccerState.isPlaying) {
+            soccerState.isPlaying = true;
+            soccerState.ball = { x: width / 2, y: height * 0.3, vx: 2, vy: 0, r: 40 };
+            soccerState.score = 0;
+            soccerState.combo = 0;
+            soccerState.lastFrame = now;
+        }
+
+        const dt = (now - soccerState.lastFrame) / 1000;
+        soccerState.lastFrame = now;
+
+        // 1. Update Ball Physics
+        soccerState.ball.vy += 600 * dt; // Gravity
+        soccerState.ball.x += soccerState.ball.vx;
+        soccerState.ball.y += soccerState.ball.vy * dt;
+
+        // Screen Wall Collisions
+        if (soccerState.ball.x - soccerState.ball.r < 0) {
+            soccerState.ball.x = soccerState.ball.r;
+            soccerState.ball.vx *= -0.8;
+        }
+        if (soccerState.ball.x + soccerState.ball.r > width) {
+            soccerState.ball.x = width - soccerState.ball.r;
+            soccerState.ball.vx *= -0.8;
+        }
+
+        // Game Over - Ball falls off bottom
+        if (soccerState.ball.y > height + soccerState.ball.r) {
+            if (soccerState.score > soccerState.highScore) soccerState.highScore = soccerState.score;
+
+            // Draw Game Over HUD
+            ctx.fillStyle = 'rgba(0,0,0,0.6)';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.font = 'bold 60px "Inter", sans-serif';
+            ctx.fillStyle = '#FF4D4D';
+            ctx.textAlign = 'center';
+            ctx.fillText('OUT!', width / 2, height / 2 - 50);
+
+            ctx.font = 'bold 30px "Inter", sans-serif';
+            ctx.fillStyle = '#FFF';
+            ctx.fillText(`SCORE: ${soccerState.score}`, width / 2, height / 2 + 20);
+
+            ctx.font = '18px "Inter", sans-serif';
+            ctx.fillText('Automatic restart in 2s...', width / 2, height / 2 + 80);
+
+            if (now - soccerState.lastGameOver > 2000 || !soccerState.lastGameOver) {
+                if (!soccerState.lastGameOver) soccerState.lastGameOver = now;
+                if (now - soccerState.lastGameOver > 2000) {
+                    soccerState.isPlaying = false;
+                    soccerState.lastGameOver = null;
+                }
+            }
+            return;
+        }
+
+        // 2. Head Collision
+        if (face) {
+            const headY = face.y - (face.height * 0.3); // Top of head
+            const dx = soccerState.ball.x - face.x;
+            const dy = soccerState.ball.y - headY;
+            const distance = Math.hypot(dx, dy);
+
+            // If ball hits the head area
+            if (distance < soccerState.ball.r + face.width * 0.4 && soccerState.ball.vy > 0) {
+                // Bounce up
+                soccerState.ball.vy = -500 - (soccerState.score * 5); // Gets harder
+                soccerState.ball.vx = dx * 0.1; // Tangential bounce
+                soccerState.score++;
+                soccerState.combo++;
+
+                // Spawn Particles
+                for (let i = 0; i < 10; i++) {
+                    soccerState.particles.push({
+                        x: soccerState.ball.x,
+                        y: soccerState.ball.y,
+                        vx: (Math.random() - 0.5) * 200,
+                        vy: (Math.random() - 0.5) * 200,
+                        life: 1.0,
+                        color: soccerState.score % 2 === 0 ? '#FFFC00' : '#FFF'
+                    });
+                }
+            }
+        }
+
+        // 3. Draw Particles
+        soccerState.particles.forEach((p, i) => {
+            p.x += p.vx * dt;
+            p.y += p.vy * dt;
+            p.life -= dt * 2;
+            if (p.life <= 0) {
+                soccerState.particles.splice(i, 1);
+                return;
+            }
+            ctx.globalAlpha = p.life;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.life * 5, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        ctx.globalAlpha = 1.0;
+
+        // 4. Draw Ball
+        ctx.save();
+        ctx.translate(soccerState.ball.x, soccerState.ball.y);
+        ctx.rotate(now / 500); // Spin the ball
+
+        // Ball Shadow
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+
+        ctx.font = `${soccerState.ball.r * 2}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('⚽', 0, 0);
+        ctx.restore();
+
+        // 5. Draw HUD
+        // Score
+        ctx.font = 'bold 60px "Inter", sans-serif';
+        ctx.fillStyle = '#FFFC00';
+        ctx.textAlign = 'center';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.fillText(soccerState.score, width / 2, 100);
+
+        if (soccerState.combo > 5) {
+            ctx.font = 'bold 30px "Inter", sans-serif';
+            ctx.fillStyle = '#FFF';
+            ctx.fillText(`${soccerState.combo} COMBO!`, width / 2, 150);
+        }
+
+        ctx.font = 'bold 20px "Inter", sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        ctx.textAlign = 'left';
+        ctx.fillText(`BEST: ${soccerState.highScore}`, 30, 60);
+
+        ctx.shadowBlur = 0;
+    }
+});
+
+// === FACE FLAPPY GAME ===
+let flappyState = {
+    birdY: 0,
+    pipes: [],
+    score: 0,
+    highScore: 0,
+    isPlaying: false,
+    lastPipe: 0,
+    lastFrame: 0,
+    gameOver: false
+};
+
+arFilters.push({
+    id: 'game-flappy',
+    name: '🐦 Flappy',
+    type: 'game',
+    description: 'Control the bird with your face!',
+    overlay: (ctx, face) => {
+        const width = ctx.canvas.width;
+        const height = ctx.canvas.height;
+        const now = Date.now();
+
+        if (!flappyState.isPlaying && !flappyState.gameOver) {
+            flappyState.isPlaying = true;
+            flappyState.score = 0;
+            flappyState.pipes = [];
+            flappyState.lastPipe = now;
+            flappyState.lastFrame = now;
+            flappyState.birdY = height / 2;
+        }
+
+        const dt = (now - flappyState.lastFrame) / 1000;
+        flappyState.lastFrame = now;
+
+        if (flappyState.gameOver) {
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+            ctx.fillRect(0, 0, width, height);
+            ctx.fillStyle = '#FFFC00';
+            ctx.textAlign = 'center';
+            ctx.font = 'bold 50px "Inter", sans-serif';
+            ctx.fillText('CRASHED!', width / 2, height / 2 - 20);
+            ctx.fillStyle = '#FFF';
+            ctx.font = '24px "Inter", sans-serif';
+            ctx.fillText(`SCORE: ${flappyState.score}`, width / 2, height / 2 + 30);
+            ctx.font = '16px "Inter", sans-serif';
+            ctx.fillText('Restarting in 2s...', width / 2, height / 2 + 70);
+
+            if (now - flappyState.lastHit > 2000) {
+                flappyState.gameOver = false;
+                flappyState.isPlaying = false;
+            }
+            return;
+        }
+
+        // 1. Update Bird (Controlled by Face Y)
+        if (face) {
+            // Map face Y to bird Y with some smoothing
+            const targetY = face.y;
+            flappyState.birdY += (targetY - flappyState.birdY) * 0.2;
+        }
+
+        // 2. Update Pipes
+        if (now - flappyState.lastPipe > 2000) {
+            const gap = 250;
+            const gapY = Math.random() * (height - gap - 200) + 100;
+            flappyState.pipes.push({ x: width + 50, gapY, gap });
+            flappyState.lastPipe = now;
+        }
+
+        flappyState.pipes.forEach((pipe, i) => {
+            pipe.x -= 200 * dt; // Pipe speed
+
+            // Draw Pipes
+            ctx.fillStyle = '#00FF00';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#00AA00';
+
+            // Top Pipe
+            ctx.fillRect(pipe.x - 40, 0, 80, pipe.gapY);
+            // Bottom Pipe
+            ctx.fillRect(pipe.x - 40, pipe.gapY + pipe.gap, 80, height);
+
+            ctx.shadowBlur = 0;
+
+            // Collision Detection
+            const birdR = 30;
+            if (pipe.x - 40 < 100 + birdR && pipe.x + 40 > 100 - birdR) {
+                if (flappyState.birdY - birdR < pipe.gapY || flappyState.birdY + birdR > pipe.gapY + pipe.gap) {
+                    flappyState.gameOver = true;
+                    flappyState.lastHit = now;
+                    if (flappyState.score > flappyState.highScore) flappyState.highScore = flappyState.score;
+                }
+            }
+
+            // Score increment
+            if (!pipe.passed && pipe.x < 100) {
+                pipe.passed = true;
+                flappyState.score++;
+            }
+
+            // Remove offscreen
+            if (pipe.x < -100) flappyState.pipes.splice(i, 1);
+        });
+
+        // 3. Draw Bird (at fixed X=100)
+        ctx.font = '50px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🐦', 100, flappyState.birdY);
+
+        // 4. Draw Score
+        ctx.font = 'bold 80px "Inter", sans-serif';
+        ctx.fillStyle = 'rgba(255, 252, 0, 0.4)';
+        ctx.textAlign = 'center';
+        ctx.fillText(flappyState.score, width / 2, height / 2);
+    }
+});
+
+
