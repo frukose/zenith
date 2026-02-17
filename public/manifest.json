@@ -1,0 +1,30 @@
+{
+    "name": "Snapchat Clone",
+    "short_name": "Snap Clone",
+    "description": "Next-generation Snapchat clone with 180+ features",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#FFFC00",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "192x192 512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "social",
+        "photo",
+        "entertainment"
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshot1.png",
+            "sizes": "540x720",
+            "type": "image/png"
+        }
+    ]
+}

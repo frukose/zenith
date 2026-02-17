@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Primary Meta Tags -->
+  <title>Snapchat Clone - Next Generation Social App</title>
+  <meta name="title" content="Snapchat Clone - Next Generation Social App" />
+  <meta name="description"
+    content="A feature-rich Snapchat clone with 180+ features including AR filters, real GPS location, achievements, and more. Built with React." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta property="og:title" content="Snapchat Clone - Next Generation" />
+  <meta property="og:description"
+    content="Experience the most advanced Snapchat clone with AR filters, real-time location, and 180+ features." />
+  <meta property="og:image" content="/og-image.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://yourdomain.com/" />
+  <meta property="twitter:title" content="Snapchat Clone - Next Generation" />
+  <meta property="twitter:description"
+    content="Experience the most advanced Snapchat clone with AR filters, real-time location, and 180+ features." />
+  <meta property="twitter:image" content="/og-image.png" />
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#FFFC00" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Snapchat Clone" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://a.basemaps.cartocdn.com" />
+  <link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {
+          // Service worker registration failed, but app still works
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
